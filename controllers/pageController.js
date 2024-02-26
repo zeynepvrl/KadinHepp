@@ -1,10 +1,5 @@
 const getIndexPage = (req, res) => {
-    const message = {
-        success: true,
-        message: "Index başarılı"
-    };
-
-    res.status(200).json(message);
+    res.send('index succ')
 }
 
 export { getIndexPage }
