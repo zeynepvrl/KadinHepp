@@ -1,7 +1,6 @@
 import userModel from "../models/userModel.js"
 import bcrypt from "bcrypt"                          //npm install bcrypt        şifrelerin veri tabanında doğrudan görünmemesi için 
 import jwt from "jsonwebtoken";                    //npm install jsonwebtoken   kullanıcı authorization için
-import Photo from "../Models/photoModel.js";
 import User from "../Models/userModel.js";
 
 const userCreate = async (req, res) => {
