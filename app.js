@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import pageRoute from "./routes/pageRoute.js"
 import userRoute from "./routes/userRoute.js"
 import cors from "cors"
+import { errorHandler } from './middlewares/errorHandler.js';
 
 
 dotenv.config();
@@ -19,6 +20,7 @@ app.use(express.urlencoded({extended:true}))
 
 app.use('/' , pageRoute);
 app.use('/user', userRoute) 
+app.use(errorHandler)
 
 
 app.listen(port)
