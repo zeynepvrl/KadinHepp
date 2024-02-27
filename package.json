@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "heroku-postbuild": "npm rebuild bcrypt --build-from-source"
   },
   "type": "module",
   "author": "Zeynep Vural",
