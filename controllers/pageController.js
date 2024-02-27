@@ -1,6 +1,6 @@
 const getIndexPage = (req, res,next) => {
     try {
-        res.send('index succe')
+        res.send('Helllooooo,  API running successful')
     } catch (error) {
         next(error)
     }
