@@ -1,18 +1,27 @@
-import userModel from "../Models/userModel.js"
+import User from "../models/userModel.js"
+import Location from "../models/locationModel.js";
 import bcrypt from "bcrypt"                          //npm install bcrypt        şifrelerin veri tabanında doğrudan görünmemesi için 
 import jwt from "jsonwebtoken";                    //npm install jsonwebtoken   kullanıcı authorization için
 import Photo from "../Models/photoModel.js";
-import User from "../Models/userModel.js";
+
 
 const userCreate = async (req, res) => {
     try {
-        await userModel.create(req.body)
-        .then(data=>res.send(data))
+        // Kullanıcı verilerini alın
+        const userData = req.body;
+        // Kullanıcının konumunu bulun
+        let locationData = await Location.findOne({ name: userData.location });
+        // Eğer belirtilen konum yoksa, yeni bir konum oluşturun
+        if (!locationData) {
+            locationData = await Location.create({ name: userData.location });
+        }
+        // Kullanıcı verilerine konumu ekleyin
+        userData.location = locationData._id;
+        // Kullanıcı oluşturma işlemini gerçekleştirin
+        const newUser = await User.create(userData);
+        res.status(201).json({ success: true, data: newUser });
     } catch (error) {
-        res.status(500).json({
-            succeded: false,
-            error
-        })
+        res.status(500).json({ success: false, error: error.message });
     }
 }
 
@@ -20,7 +29,7 @@ const userCreate = async (req, res) => {
 const userLogin = async (req, res) => {
     try {
         const { name, password } = req.body                    //burdaki requestten gelen name ile formlardaki(register login dashboard .ejs) name  ve userModel deki Schema daki name ismi aynı olmalıdır
-        const user = await userModel.findOne({ name })       //modeldeki name burdaki req.body den aldığımız username e eşit olan= user a atanacak, burdaki username ismi formlardaki ve modeldekilerile aynı olmalı veya uygun şekilde username:name şeklinde eşleştirilmeli
+        const user = await User.findOne({ name })       //modeldeki name burdaki req.body den aldığımız username e eşit olan= user a atanacak, burdaki username ismi formlardaki ve modeldekilerile aynı olmalı veya uygun şekilde username:name şeklinde eşleştirilmeli
         let same = false                                             // veri tabanında yapılan işlemlerin (örn findOne) önüne await eklemezsen, user boş yani false olarak döner
 
         if (user) {
