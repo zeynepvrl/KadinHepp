@@ -9,11 +9,14 @@ const userCreate = async (req, res) => {
     try {
         // Kullanıcı verilerini alın
         const userData = req.body;
+        console.log(req.body)
         // Kullanıcının konumunu bulun
         let locationData = await Location.findOne({ name: userData.location });
+        console.log(locationData)
         // Eğer belirtilen konum yoksa, yeni bir konum oluşturun
         if (!locationData) {
             locationData = await Location.create({ name: userData.location });
+            console.log(locationData)
         }
         // Kullanıcı verilerine konumu ekleyin
         userData.location = locationData._id;
