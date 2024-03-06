@@ -1,0 +1,95 @@
+openapi: 3.0.0
+info:
+  title: KadınHepp Project API
+  description: This API provides endpoints for managing users and posts.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/
+paths:
+  /user/register:
+    post:
+      summary: Create a new user
+      description: Create a new user with the provided information.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the user.
+                email:
+                  type: string
+                  description: The email address of the user.
+                password:
+                  type: string
+                  description: The password of the user.
+                location:
+                  type: string
+                  description: The location of the user.
+              required:
+                - name
+                - email
+                - password
+                - location
+      responses:
+        "201":
+          description: User successfully created.
+        "400":
+          description: Bad request. Some required fields are missing or invalid.
+
+  /user/login:
+    post:
+      summary: User login
+      description: Log in an existing user with provided credentials.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the user.
+                password:
+                  type: string
+                  description: The password of the user.
+              required:
+                - name
+                - password
+      responses:
+        "200":
+          description: Successful login.
+        "401":
+          description: Unauthorized. Invalid credentials.
+        "500":
+          description: Internal server error.
+  /post/createPost:
+    post:
+      summary: Create a new post
+      description: Create a new post with the provided information.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  description: The content of the post.
+                category:
+                  type: string
+                  description: The category of the post.
+              required:
+                - content
+      responses:
+        "201":
+          description: Post successfully created.
+        "400":
+          description: Bad request. Some required fields are missing or invalid.
+        "500":
+          description: Internal server error.

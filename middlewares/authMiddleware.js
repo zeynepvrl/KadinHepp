@@ -13,6 +13,7 @@ const checkUser= async (req,res,next)=>{
             }else{
                 const user= await User.findById(decodedToken.userId)         //tokenı userControllerda creat eden fonksiyon parametre olarak userId aldığı için burdaki de aynı olmalı
                 res.locals.user=user
+                console.log(res.locals.user)
                 next()
             }
         })
@@ -34,17 +35,14 @@ const authenticateToken = async (req, res, next) => {
         if(token){
             jwt.verify(token, process.env.JWT_SECRETKEY, (err)=>{//token ın verify işleminde bir hata varsa
                 if(err){
-                    console.log(err.message)
-                    res.redirect('/login')
+                    console.log(err.message)    //login sayfasına yönlendirme olmalı
                 }else{
                     next()
                 }
             })
         }else{
-            console.log("token yok")
-            res.redirect('/login')
+            console.log("token yok")      //login sayfasına yönlendirme olmalı
         }
-
     } catch (error) {
         res.status(401).json({
             succeded:false,

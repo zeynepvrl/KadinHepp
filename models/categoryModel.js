@@ -9,6 +9,6 @@ const categorySchema = new Schema({                                             
     }
 })
 
-const category = mongoose.model("category", categorySchema)        //photoM adında modeli oluşturur, photoSchemayı kullanrak, Photo adında
+const Category = mongoose.model("Category", categorySchema)        //photoM adında modeli oluşturur, photoSchemayı kullanrak, Photo adında
 
-export default category
+export default Category

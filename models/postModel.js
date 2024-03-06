@@ -5,7 +5,7 @@ import { Schema } from "mongoose";
 const postSchema = new Schema({
     user:{                           //her fotoğraf hangi user a ait olduğuna dair bilgi taşıyacak  , üstteki 3 bilgiyi fotoğrafın oluşturulduğu formdan olacağız ama user bilgisini req.locals.user dan alacağız, tokenı decode edip buraya user ı yerleştirmiştik zaten
         type:Schema.Types.ObjectId,
-        ref:'user'                  //User modelini referans gösterdik
+        ref:'User'                  //User modelini referans gösterdik
     },
     content: {
         type: String,
@@ -21,7 +21,7 @@ const postSchema = new Schema({
     },
     location:{
         type:Schema.Types.ObjectId,
-        ref:'location'
+        ref:'Location'
     },
     photo:{
         type:Schema.Types.ObjectId,
@@ -29,6 +29,6 @@ const postSchema = new Schema({
     }
 })
 
-const post = mongoose.model("post", postSchema)        //photoM adında modeli oluşturur, photoSchemayı kullanrak, Photo adında
+const Post = mongoose.model("Post", postSchema)        //photoM adında modeli oluşturur, photoSchemayı kullanrak, Photo adında
 
-export default post
+export default Post
