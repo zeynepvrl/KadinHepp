@@ -9,14 +9,11 @@ const userCreate = async (req, res) => {
     try {
         // Kullanıcı verilerini alın
         const userData = req.body;
-        console.log(req.body)
         // Kullanıcının konumunu bulun
         let locationData = await Location.findOne({ name: userData.location });
-        console.log(locationData)
         // Eğer belirtilen konum yoksa, yeni bir konum oluşturun
         if (!locationData) {
             locationData = await Location.create({ name: userData.location });
-            console.log(locationData)
         }
         // Kullanıcı verilerine konumu ekleyin
         userData.location = locationData._id;
@@ -55,6 +52,7 @@ const userLogin = async (req, res) => {
 
             res.status(200).json({
                user,
+               token
                //token:createToken(user._id)                 //login yapmak için bilgilerini giren userın vertabanındaki _id değeri ile bir token oluştur ki, sonra ben bu kullanıcının yetkisi olup olmadığını kontrol edebileyim     
            }) 
 
