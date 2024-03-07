@@ -8,13 +8,22 @@ import postRoute from "./routes/postRoute.js"
 import cors from "cors"
 import { errorHandler } from './middlewares/errorHandler.js';
 import { checkUser } from './middlewares/authMiddleware.js';
-import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express'
 import YAML from 'yamljs';
+import fileUpload from 'express-fileupload';
+import {v2 as cloudinary} from "cloudinary" 
 
 
 dotenv.config();
+
+cloudinary.config({
+    cloud_name:process.env.CLOUD_NAME,
+    api_key:process.env.CLOUD_API_KEY,
+    api_secret:process.env.CLOUD_API_SECRET
+})
+
 conn();
+
 
 const app = express();
 const port = process.env.PORT;
@@ -26,6 +35,7 @@ app.use(cors())
 
 app.use(express.json())
 app.use(cookieParser());
+app.use(fileUpload({useTempFiles:true}))
 app.use(express.urlencoded({extended:true}))
 
 app.use("*" , checkUser)

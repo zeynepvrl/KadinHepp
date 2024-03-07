@@ -40,6 +40,10 @@ userSchema.pre("save", function (next) {
         user.password = hash;
         next();
     });
+
+    if (!user.photo) {
+        user.photo = "65ea209e4a16d739effdd986";
+    }
 });
 
 const User = mongoose.model("User", userSchema);
