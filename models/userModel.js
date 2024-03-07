@@ -18,10 +18,14 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    location: {
+    /* locationId: {
         type: Schema.Types.ObjectId,
         ref: 'Location', // Referans alınacak schema'nın adı
         required: true
+    }, */
+    location:{
+        type:String,
+        required:true
     },
     photo: {
         type: Schema.Types.ObjectId,
