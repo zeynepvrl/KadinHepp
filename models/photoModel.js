@@ -12,6 +12,6 @@ const photoSchema = new Schema({                                                
     }
 })
 
-const photo = mongoose.model("photo", photoSchema)        //photoM adında modeli oluşturur, photoSchemayı kullanrak, Photo adında
+const Photo = mongoose.model("Photo", photoSchema)        //photoM adında modeli oluşturur, photoSchemayı kullanrak, Photo adında
 
-export default photo
+export default Photo
