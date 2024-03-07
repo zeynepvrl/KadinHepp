@@ -20,9 +20,13 @@ const postSchema = new Schema({
         ref:'category'
     },
     location:{
+        type:stringify,
+        required:true
+    },
+    /* location:{
         type:Schema.Types.ObjectId,
         ref:'Location'
-    },
+    }, */
     photo:{
         type:Schema.Types.ObjectId,
         ref:'Photo'
