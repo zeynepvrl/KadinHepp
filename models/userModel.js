@@ -32,8 +32,8 @@ const userSchema = new Schema({
         ref: 'Photo'
     }
 });
-
-userSchema.pre("save", function (next) {
+const defaultPhotoId = "65ea209e4a16d739effdd986";
+userSchema.pre("save", async function (next) {
     const user = this;
     bcrypt.hash(user.password, 10, (err, hash) => {
         if (err) return next(err);
@@ -42,7 +42,8 @@ userSchema.pre("save", function (next) {
     });
 
     if (!user.photo) {
-        user.photo = "65ea209e4a16d739effdd986";
+        const defaultPhoto = await Photo.findById(defaultPhotoId);
+        user.photo = defaultPhoto.url;
     }
 });
 
