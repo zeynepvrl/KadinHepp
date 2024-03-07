@@ -20,7 +20,7 @@ const postSchema = new Schema({
         ref:'category'
     },
     location:{
-        type:stringify,
+        type:String,
         required:true
     },
     /* location:{
