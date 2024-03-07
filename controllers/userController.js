@@ -16,7 +16,7 @@ const userCreate = async (req, res) => {
             locationData = await Location.create({ name: userData.location });
         }
         // Kullanıcı verilerine konumu ekleyin
-        userData.location = locationData._id;
+        userData.location = locationData.name;
         // Kullanıcı oluşturma işlemini gerçekleştirin
         const newUser = await User.create(userData);
         res.status(201).json({ success: true, data: newUser });
