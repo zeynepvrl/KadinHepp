@@ -13,7 +13,6 @@ const checkUser= async (req,res,next)=>{
             }else{
                 const user= await User.findById(decodedToken.userId)         //tokenı userControllerda creat eden fonksiyon parametre olarak userId aldığı için burdaki de aynı olmalı
                 res.locals.user=user
-                console.log(res.locals.user)
                 next()
             }
         })

@@ -16,8 +16,7 @@ const postSchema = new Schema({
         default: Date.now 
     },                                                                                                        //bunu zaten photoCreate de belirteceğiz <=
     category:{
-        type:Schema.Types.ObjectId,
-        ref:'category'
+        type:String,
     },
     location:{
         type:String,
