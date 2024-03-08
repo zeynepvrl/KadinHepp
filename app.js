@@ -38,7 +38,7 @@ app.use(cookieParser());
 app.use(fileUpload({useTempFiles:true}))
 app.use(express.urlencoded({extended:true}))
 
-app.use("*" , checkUser)
+//app.use("*" , checkUser)
 app.use('/' , pageRoute);
 app.use('/user', userRoute)
 app.use('/post',postRoute) 
