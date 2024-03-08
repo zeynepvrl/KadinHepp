@@ -83,7 +83,7 @@ userSchema.pre("save", async function (next) {
 
         // Fotoğraf atanmamışsa varsayılan fotoğraf atanıyor
         if (user.photo==undefined) {
-            user.photo = getRandomAvatar();
+            user.photo =getRandomAvatar();
         }
     } catch (error) {
         return next(error);
