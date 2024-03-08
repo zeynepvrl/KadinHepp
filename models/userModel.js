@@ -32,7 +32,47 @@ const userSchema = new Schema({
         type:String
     }
 });
-const defaultPhotoId = "65ea209e4a16d739effdd986";
+
+
+const avatarURLs = [
+    "https://avatar.iran.liara.run/public/63",
+    "https://avatar.iran.liara.run/public/99",
+    "https://avatar.iran.liara.run/public/81",
+    "https://avatar.iran.liara.run/public/57",
+    "https://avatar.iran.liara.run/public/68",
+    "https://avatar.iran.liara.run/public/85",
+    "https://avatar.iran.liara.run/public/84",
+    "https://avatar.iran.liara.run/public/67",
+    "https://avatar.iran.liara.run/public/78",
+    "https://avatar.iran.liara.run/public/61",
+    "https://avatar.iran.liara.run/public/95",
+    "https://avatar.iran.liara.run/public/93",
+    "https://avatar.iran.liara.run/public/74",
+    "https://avatar.iran.liara.run/public/73",
+    "https://avatar.iran.liara.run/public/89",
+    "https://avatar.iran.liara.run/public/62",
+    "https://avatar.iran.liara.run/public/71",
+    "https://avatar.iran.liara.run/public/52",
+    "https://avatar.iran.liara.run/public/94",
+    "https://avatar.iran.liara.run/public/86",
+    "https://avatar.iran.liara.run/public/75",
+    "https://avatar.iran.liara.run/public/96",
+    "https://avatar.iran.liara.run/public/55",
+    "https://avatar.iran.liara.run/public/88",
+    "https://avatar.iran.liara.run/public/80",
+    "https://avatar.iran.liara.run/public/56",
+    "https://avatar.iran.liara.run/public/82",
+    "https://avatar.iran.liara.run/public/95",
+    "https://avatar.iran.liara.run/public/95",
+    "https://avatar.iran.liara.run/public/95",
+    "https://avatar.iran.liara.run/public/95",
+
+];
+function getRandomAvatar() {
+    const randomIndex = Math.floor(Math.random() * avatarURLs.length);
+    return avatarURLs[randomIndex];
+}
+
 userSchema.pre("save", async function (next) {
     const user = this;
 
@@ -43,8 +83,7 @@ userSchema.pre("save", async function (next) {
 
         // Fotoğraf atanmamışsa varsayılan fotoğraf atanıyor
         if (user.photo==undefined) {
-            const defaultPhoto = await Photo.findById(defaultPhotoId);
-            user.photo = defaultPhoto.url;
+            user.photo = getRandomAvatar();
         }
     } catch (error) {
         return next(error);
