@@ -42,7 +42,7 @@ app.use(express.urlencoded({extended:true}))
 app.use('/' , pageRoute);
 app.use('/user', userRoute)
 app.use('/post',postRoute) 
-app.use(errorHandler)
+//app.use(errorHandler)
 
 
 app.listen(port)
