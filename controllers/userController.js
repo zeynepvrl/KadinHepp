@@ -1,5 +1,4 @@
 import User from "../models/userModel.js"
-import Location from "../models/locationModel.js";
 import bcrypt from "bcrypt"                          //npm install bcrypt        şifrelerin veri tabanında doğrudan görünmemesi için 
 import jwt from "jsonwebtoken";                    //npm install jsonwebtoken   kullanıcı authorization için
 
@@ -7,24 +6,14 @@ import jwt from "jsonwebtoken";                    //npm install jsonwebtoken   
 
 const userCreate = async (req, res) => {
     try {
-        // Kullanıcı verilerini alın
+        // Kullanıcı veri
         const userData = req.body;
-        // Kullanıcının konumunu bulun
-        let locationData = await Location.findOne({ name: userData.location });
-        // Eğer belirtilen konum yoksa, yeni bir konum oluşturun
-        if (!locationData) {
-            locationData = await Location.create({ name: userData.location });
-        }
-        // Kullanıcı verilerine konumu ekleyin
-        userData.location = locationData.name;
-        // Kullanıcı oluşturma işlemini gerçekleştirin
         const newUser = await User.create(userData);
         res.status(201).json({ success: true, data: newUser });
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });
     }
 }
-
 
 const userLogin = async (req, res) => {
     try {

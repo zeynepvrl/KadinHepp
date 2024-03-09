@@ -14,7 +14,7 @@ const postSchema = new Schema({
     uploadedAt: {
         type: Date,
         default: Date.now 
-    },                                                                                                        //bunu zaten photoCreate de belirteceğiz <=
+    },                                                                                                        
     category:{
         type:String,
     },
@@ -32,6 +32,5 @@ const postSchema = new Schema({
     }
 })
 
-const Post = mongoose.model("Post", postSchema)        //photoM adında modeli oluşturur, photoSchemayı kullanrak, Photo adında
-
+const Post = mongoose.model("Post", postSchema)        
 export default Post
