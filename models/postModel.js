@@ -22,13 +22,8 @@ const postSchema = new Schema({
         type:String,
         required:true
     },
-    /* location:{
-        type:Schema.Types.ObjectId,
-        ref:'Location'
-    }, */
     photo:{
-        type:Schema.Types.ObjectId,
-        ref:'Photo'
+        type: [String]
     }
 })
 

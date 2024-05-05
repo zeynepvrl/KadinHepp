@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import Photo from "../models/photoModel.js"
 
 const { Schema } = mongoose;
 
