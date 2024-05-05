@@ -4,6 +4,22 @@ import * as pageController from "../controllers/pageController.js"
 
 const router = express.Router();
 
+router.route("/").get( pageController.getIndexPage)
+
+
+export default router;
+
+
+
+
+
+
+/* import express from "express";
+import * as pageController from "../controllers/pageController.js"
+
+
+const router = express.Router();
+
 /**
  * @swagger
  * /:
@@ -13,8 +29,8 @@ const router = express.Router();
  *      responses:
  *          200:
  *              description: Index page retrieved successfully
- */
+ 
 router.route("/").get( pageController.getIndexPage)
 
 
-export default router;
+export default router; */
