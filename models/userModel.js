@@ -62,10 +62,6 @@ const avatarURLs = [
     "https://avatar.iran.liara.run/public/56",
     "https://avatar.iran.liara.run/public/82",
     "https://avatar.iran.liara.run/public/95",
-    "https://avatar.iran.liara.run/public/95",
-    "https://avatar.iran.liara.run/public/95",
-    "https://avatar.iran.liara.run/public/95",
-
 ];
 function getRandomAvatar() {
     const randomIndex = Math.floor(Math.random() * avatarURLs.length);
