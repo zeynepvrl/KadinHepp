@@ -275,6 +275,62 @@ paths:
                     type: boolean
                   error:
                     type: string
+  /post/get/Userpost:
+    get:
+      summary: Get active user's posts
+      description: Retrieve posts created by the active user.
+      responses:
+        '200':
+          description: A list of posts created by the active user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Post'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: string
+  /user/getActiveUser:
+    get:
+      summary: Get active user information
+      description: Retrieve information about the active user.
+      responses:
+        '201':
+          description: Information about the active user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    $ref: '#/components/schemas/User'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: string
 
 components:
   schemas:

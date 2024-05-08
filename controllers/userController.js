@@ -66,5 +66,13 @@ const createToken = (userId) => {                             //tokenın payload
     })                                                       //bu fonksiyon yukarıda login fonksiyonunun başarılı olduğu if bölümünde response olarak döndürülenler arasında kullanılacak
 }
 
+const getActiveUser = async (req,res)=>{
+    try {
+        const activeUser=await User.findById(res.locals.user._id)
+        res.status(201).json({succeded:true,data:activeUser})
+    } catch (error) {
+        res.status(500).json({succeded:false,error:error.message})
+    }
+}
 
-export { userCreate, userLogin}     // default ile export etmediğin için *as olarak import etmelisin, default ile export edip *as olarak import edersen görmez!
+export { userCreate, userLogin, getActiveUser}     // default ile export etmediğin için *as olarak import etmelisin, default ile export edip *as olarak import edersen görmez!

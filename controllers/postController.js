@@ -143,4 +143,14 @@ const postUpdate = async (req, res) => {
     }
 };
 
-export { postCreate, getPostbyLocandCategory, postDelete, postUpdate };
+const getActiveUserPosts = async (req, res) => {
+    try {
+        const userId = res.locals.user._id; // Giriş yapmış kullanıcının kimliği
+        const userPosts = await Post.find({ user: userId }).sort({ uploadedAt: 1 });
+        res.status(200).json({ success: true, data: userPosts });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+};
+
+export { postCreate, getPostbyLocandCategory, postDelete, postUpdate,getActiveUserPosts };
