@@ -4,5 +4,7 @@ const router = express.Router();
 
 router.route('/createPost').post(postController.postCreate)
 router.route('/:category').get(postController.getPostbyLocandCategory)
+router.route('/update/:id').put(postController.postUpdate)
+router.route('/delete/:id').delete(postController.postDelete)
 
 export default router

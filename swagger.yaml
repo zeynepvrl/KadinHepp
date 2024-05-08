@@ -176,6 +176,106 @@ paths:
                     type: boolean
                   error:
                     type: string
+
+  /post/update/{id}:
+    put:
+      summary: Update a post
+      description: Update an existing post with the provided information.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of the post to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                category:
+                  type: string
+                location:
+                  type: string
+                images:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    $ref: '#/components/schemas/Post'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: string
+
+  /post/delete/{id}:
+    delete:
+      summary: Delete a post
+      description: Delete an existing post with the provided ID.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of the post to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    $ref: '#/components/schemas/Post'
+        '404':
+          description: Post not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: string
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: string
+
 components:
   schemas:
     Post:
