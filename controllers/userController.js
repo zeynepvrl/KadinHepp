@@ -1,8 +1,8 @@
 import User from "../models/userModel.js"
 import bcrypt from "bcrypt"                          //npm install bcrypt        şifrelerin veri tabanında doğrudan görünmemesi için 
 import jwt from "jsonwebtoken";                    //npm install jsonwebtoken   kullanıcı authorization için
-
-
+import cloudinary from "cloudinary"
+import fs from "fs"
 
 const userCreate = async (req, res) => {
     try {
@@ -75,4 +75,35 @@ const getActiveUser = async (req,res)=>{
     }
 }
 
-export { userCreate, userLogin, getActiveUser}     // default ile export etmediğin için *as olarak import etmelisin, default ile export edip *as olarak import edersen görmez!
+const userEdit = async (req, res) => {
+    try {
+        const userId=res.locals.user._id; 
+        const updatedUserData = req.body; // Yeni kullanıcı verilerini istek gövdesinden alın
+
+        if(req.files && req.files.images && req.files.images !== null && req.files.images !== undefined){
+            const result = await cloudinary.uploader.upload(
+                req.files.images.tempFilePath,
+                {
+                    use_filename: true,
+                    asset_folder:"KadinHepp"
+                }
+            );
+            updatedUserData.photo= result.secure_url
+            fs.unlinkSync(req.files.images.tempFilePath);
+        }
+        
+
+        // Kullanıcıyı güncelle
+        const updatedUser = await User.findByIdAndUpdate(userId, updatedUserData, { new: true });
+
+        if (!updatedUser) {
+            return res.status(404).json({ success: false, error: 'User not found' });
+        }
+
+        res.status(200).json({ success: true, data: updatedUser });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+}
+
+export { userCreate, userLogin, getActiveUser, userEdit}     // default ile export etmediğin için *as olarak import etmelisin, default ile export edip *as olarak import edersen görmez!

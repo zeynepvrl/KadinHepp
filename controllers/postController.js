@@ -121,11 +121,11 @@ const postUpdate = async (req, res) => {
                     fs.unlinkSync(image.tempFilePath);
                 });
             }
+            updates.photo = allImageUrls;
         }
 
         const postId = req.params.id;
         const updates = req.body;
-        updates.photo = allImageUrls;
         const options = { new: true };
         const post = await Post.findById(postId);
 

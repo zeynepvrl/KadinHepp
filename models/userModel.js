@@ -18,11 +18,6 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    /* locationId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Location', // Referans alınacak schema'nın adı
-        required: true
-    }, */
     location:{
         type:String,
         required:true
