@@ -106,4 +106,18 @@ const userEdit = async (req, res) => {
     }
 }
 
-export { userCreate, userLogin, getActiveUser, userEdit}     // default ile export etmediğin için *as olarak import etmelisin, default ile export edip *as olarak import edersen görmez!
+const userDelete = async (req, res) => {
+    try {
+        const userId = res.locals.user._id;
+        const deletedUser = await User.findByIdAndDelete(userId);
+
+        if (!deletedUser) {
+            return res.status(404).json({ success: false, error: 'User not found' });
+        }
+
+        res.status(200).json({ success: true, data: deletedUser });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+}
+export { userCreate, userLogin, getActiveUser, userEdit, userDelete}     // default ile export etmediğin için *as olarak import etmelisin, default ile export edip *as olarak import edersen görmez!
