@@ -447,6 +447,54 @@ paths:
                     type: boolean
                   error:
                     type: string
+  /ay/takvim:
+    get:
+      summary: Get AyTakvimi
+      description: Retrieve a list of all AyTakvimi entries
+      tags:
+        - AyTakvimi
+      responses:
+        '200':
+          description: Successfully retrieved AyTakvimi entries
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                          example: "664cb586d0c9c6e11fd35547"
+                        Tarih:
+                          type: string
+                          format: date-time
+                          example: "2024-01-01T00:00:00.000Z"
+                        Görsel_1_URL:
+                          type: string
+                          example: "https://kadinhepp.web.app/assets/ay-takvimi/images/eyebrow.png"
+                        Açıklama:
+                          type: string
+                          example: "Güçlendirici ve gürleştirici etki. Saç yıkanması için iyi bir zaman."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  error:
+                    type: string
+                    example: "Error message"
 components:
   schemas:
     Post:

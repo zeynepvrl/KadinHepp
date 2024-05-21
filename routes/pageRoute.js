@@ -5,6 +5,7 @@ import * as pageController from "../controllers/pageController.js"
 const router = express.Router();
 
 router.route("/").get( pageController.getIndexPage)
+router.route("/takvim").get(pageController.getaytakvimi)
 
 
 export default router;

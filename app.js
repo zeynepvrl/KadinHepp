@@ -41,7 +41,8 @@ app.use(express.urlencoded({extended:true}))
 app.use("*" , checkUser)
 app.use('/' , pageRoute);
 app.use('/user', userRoute)
-app.use('/post',postRoute) 
+app.use('/post',postRoute)
+app.use('/ay',pageRoute)
 //app.use(errorHandler)
 
 
