@@ -7,7 +7,7 @@ const AytakvimiSchema = new Schema({
         required: true
     },
     Görsel_1_URL: {
-        type: String,
+        type: String, 
         required: true
     },                                                                                   
     Açıklama: {
