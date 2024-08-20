@@ -1,6 +1,6 @@
 # Node.js REST API
 
-Bu proje, Node.js, Express.js, MongoDB ve Cloudinary kullanılarak geliştirilmiş bir REST API'dir. API, kullanıcıların deneyimlerini paylaşabilecekleri, fotoğraflar ekleyebilecekleri ve hesap yönetimi yapabilecekleri bir platform sağlar. JSON Web Token (JWT) ile güvenli kimlik doğrulama sunar ve CRUD (Create, Read, Update, Delete) işlemlerini destekler.
+Bu proje, ** Node.js, Express.js, MongoDB ve Cloudinary** kullanılarak geliştirilmiş bir REST API'dir. API, kullanıcıların deneyimlerini paylaşabilecekleri, fotoğraflar ekleyebilecekleri ve hesap yönetimi yapabilecekleri bir platform sağlar. JSON Web Token (JWT) ile güvenli kimlik doğrulama sunar ve CRUD (Create, Read, Update, Delete) işlemlerini destekler.
 
 ## Özellikler
 
